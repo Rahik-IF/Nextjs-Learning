@@ -1,0 +1,5 @@
+1. For simple routing like about/ => about folder --> page.tsx
+2. For dynamic routing feature like blogs/25 , blogs/26 => blogs folder --> [id] --> page.tsx
+3. For group folders feature like auth/login + auth/register => (auth) --> login.tsx + register.tsx (this do not take as a route)
+
+ 
