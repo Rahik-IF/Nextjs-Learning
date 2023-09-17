@@ -1,0 +1,63 @@
+
+#server side rendering(ssr)=> Dynamic Rendering
+#static side generation(ssg) => Static Rendering
+#client side rendering(csr)
+
+
+
+#server side rendering / Dynamic Renedring features
+----------------------------------------------------
+1. Done in the request time and the result is not cached.
+2. good for SEO.
+3. keep the bundlers where JS codes are written for building the webpage, for example=> npm. So the browser rendering time is reduced.
+4. Both pre rendered and hydration done in the server.
+5. Uses where need user specific datas (uid, user name, user date if birth etc).
+6. automatically do when see uncached data, and dynamic functions(cookies, headers, useSearchParams), and route config(look in the documentation).
+
+#static rendering / static side generation features
+---------------------------------------------------
+1. Done in the build time.
+2. cached the fetched data.
+
+#server components
+-------------------
+1. fetching data
+2. Can access backend data directly
+3. keep sensitive data on the server (api keys, access tokens).
+4. Can not be interactive in browser.
+
+#client components
+-------------------
+1. use where need user interactivity.
+2. need to use where uses hooks (usestate, useEffect etc)
+3. where need to use browser-only API.
+4. where uses react class component.
+5. for those custom hooks which uses react states, effects, and browser-only API.
+6. client components also pre rendered on the server, but hydrated in the browser. So this only fully rendered on the browser, so they can listen to the
+events, hooks, and other listeners.
+
+
+incremental side regeneration(isr)
+-----------------------------------
+1. It is quite similar to static rendering.
+2. Done after the build time.
+3. Do validation after several 
+
+
+Points to be noted
+-------------------
+# It is not mandatory that server side rendering always done in the server components. For example useSearchParams is a hook which automatically force 
+to do the dynamic rendering(ssr) but it need to do in the client component, as useSearchParams is a hook.
+# Nextjs by default use server components. Nextjs recommend to use server components and tell us to use client components only when it needed.
+
+File structure management:
+-----------------------------
+App directory files are by default server components. If you need to use any client side components, 
+just create it as a separate component, and write "use-client" on top of that component, 
+to make a boundary between ssr and csr. So never use any server components feature in that component, and the children of that component!
+So you should try to use the client side component in the lower level of the component tree structure.
+But if, in case you need to use the server component inside the client side component, you only have a single way, 
+that the server component should use as a children(props) on that client component(write "use-server" on the top of that children component or function), 
+but you can't import a server component inside the client component.
+
+
